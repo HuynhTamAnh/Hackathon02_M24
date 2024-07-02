@@ -104,9 +104,7 @@ const App: React.FC = () => {
   };
 
   const checkAllCompleted = () => {
-    if (todos.length > 0 && todos.every((todo) => todo.completed)) {
-      message.success("Hoàn thành tất cả công việc!");
-    }
+    return todos.length > 0 && todos.every((todo) => todo.completed);
   };
 
   const completedTodosCount = todos.filter((todo) => todo.completed).length;
@@ -169,7 +167,13 @@ const App: React.FC = () => {
           )}
         />
         <div style={{ marginTop: 16, textAlign: "center" }}>
-          Công việc đã hoàn thành: {completedTodosCount} / {todos.length}
+          <span>
+            Công việc đã hoàn thành: {completedTodosCount} / {todos.length}
+            <br />
+            {checkAllCompleted() && (
+              <span style={{ color: "green" }}>Hoàn thành tất cả!</span>
+            )}
+          </span>
         </div>
       </Card>
     </div>
